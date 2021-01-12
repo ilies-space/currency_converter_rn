@@ -1,5 +1,5 @@
-import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {Colors} from '../theme/Colors';
 
 export default function Home() {
@@ -7,6 +7,7 @@ export default function Home() {
   const mainColor = Colors.mainColor;
   const lightColor = Colors.light;
   //utility
+  const [input, setinput] = useState(10);
 
   function getCurrentDate() {
     var date = new Date().getDate();
@@ -73,6 +74,44 @@ export default function Home() {
               }}
             />
           </TouchableOpacity>
+        </View>
+        {/* Main View  */}
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'red',
+            flex: 1,
+          }}>
+          {/* INPUT AREA  */}
+          <View
+            style={{
+              flexDirection: 'row',
+              height: 80,
+              justifyContent: 'center',
+            }}>
+            <View
+              style={{
+                width: '35%',
+              }}>
+              <TextInput
+                keyboardType={'decimal-pad'}
+                style={{
+                  color: 'white',
+                  fontSize: 35,
+                  borderBottomWidth: 2,
+                  borderColor: 'white',
+                  padding: 15,
+                }}
+                value={input.toString()}
+                onChangeText={(inputValue) => {
+                  setinput(inputValue);
+                }}
+              />
+            </View>
+            {/* change currency picker */}
+            <Text>input here</Text>
+          </View>
         </View>
       </View>
     </View>
