@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 import {Colors} from '../theme/Colors';
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
   const lightColor = Colors.light;
   //utility
   const [input, setinput] = useState(10);
+  const [convertFrom, setconvertFrom] = useState('DZD');
 
   function getCurrentDate() {
     var date = new Date().getDate();
@@ -110,7 +112,17 @@ export default function Home() {
               />
             </View>
             {/* change currency picker */}
-            <Text>input here</Text>
+            <View style={{width: '15%'}}>
+              <Picker
+                mode={'dropdown'}
+                selectedValue={convertFrom}
+                style={{height: 50, width: 100}}
+                onValueChange={(itemValue) => setconvertFrom(itemValue)}>
+                <Picker.Item label="DZD" value="DZD" />
+                <Picker.Item label="Euro" value="Euro" />
+                <Picker.Item label="Dollar" value="Dollar" />
+              </Picker>
+            </View>
           </View>
         </View>
       </View>
