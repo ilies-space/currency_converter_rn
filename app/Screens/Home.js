@@ -82,7 +82,7 @@ export default function Home() {
           style={{
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: 'red',
+            backgroundColor: mainColor,
             flex: 1,
           }}>
           {/* INPUT AREA  */}
@@ -116,7 +116,12 @@ export default function Home() {
               <Picker
                 mode={'dropdown'}
                 selectedValue={convertFrom}
-                style={{height: 50, width: 100}}
+                style={{
+                  height: 50,
+                  width: 100,
+                  color: lightColor,
+                }}
+                dropdownIconColor={'white'}
                 onValueChange={(itemValue) => setconvertFrom(itemValue)}>
                 <Picker.Item label="DZD" value="DZD" />
                 <Picker.Item label="Euro" value="Euro" />
