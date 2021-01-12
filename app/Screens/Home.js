@@ -8,8 +8,10 @@ export default function Home() {
   const mainColor = Colors.mainColor;
   const lightColor = Colors.light;
   //utility
-  const [input, setinput] = useState(10);
   const [convertFrom, setconvertFrom] = useState('DZD');
+  const [convertTo, setconvertTo] = useState('Euro');
+  const [input, setinput] = useState(10);
+  const [result, setresult] = useState(0);
 
   function getCurrentDate() {
     var date = new Date().getDate();
@@ -141,7 +143,7 @@ export default function Home() {
             flex: 1,
             zIndex: 0,
           }}>
-          {/* INPUT AREA  */}
+          {/* Result AREA  */}
           <View
             style={{
               flexDirection: 'row',
@@ -162,9 +164,9 @@ export default function Home() {
                   borderColor: mainColor,
                   padding: 15,
                 }}
-                value={input.toString()}
+                value={result.toString()}
                 onChangeText={(inputValue) => {
-                  setinput(inputValue);
+                  setresult(inputValue);
                 }}
               />
             </View>
@@ -172,14 +174,14 @@ export default function Home() {
             <View style={{width: '15%'}}>
               <Picker
                 mode={'dropdown'}
-                selectedValue={convertFrom}
+                selectedValue={convertTo}
                 style={{
                   height: 50,
                   width: 100,
                   color: mainColor,
                 }}
                 dropdownIconColor={mainColor}
-                onValueChange={(itemValue) => setconvertFrom(itemValue)}>
+                onValueChange={(itemValue) => setconvertTo(itemValue)}>
                 <Picker.Item label="Dollar" value="Dollar" />
                 <Picker.Item label="DZD" value="DZD" />
                 <Picker.Item label="Euro" value="Euro" />
