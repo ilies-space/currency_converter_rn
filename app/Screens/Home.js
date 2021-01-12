@@ -77,13 +77,14 @@ export default function Home() {
             />
           </TouchableOpacity>
         </View>
-        {/* Main View  */}
+        {/* Main View  1*/}
         <View
           style={{
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: mainColor,
             flex: 1,
+            zIndex: 0,
           }}>
           {/* INPUT AREA  */}
           <View
@@ -100,7 +101,7 @@ export default function Home() {
                 keyboardType={'decimal-pad'}
                 style={{
                   color: 'white',
-                  fontSize: 35,
+                  fontSize: 40,
                   borderBottomWidth: 2,
                   borderColor: 'white',
                   padding: 15,
@@ -129,26 +130,80 @@ export default function Home() {
               </Picker>
             </View>
           </View>
+        </View>
+        {/* swap button  */}
+        <View
+          style={{
+            position: 'absolute',
+            bottom: '43%',
+            right: 20,
+            elevation: 10,
+          }}>
+          <TouchableOpacity
+            style={{
+              backgroundColor: lightColor,
+              width: 50,
+              height: 50,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 5,
+            }}>
+            <Text>T L</Text>
+          </TouchableOpacity>
+        </View>
 
-          {/* swap button  */}
+        {/* Main View  2*/}
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: lightColor,
+            flex: 1,
+            zIndex: 0,
+          }}>
+          {/* INPUT AREA  */}
           <View
             style={{
-              position: 'absolute',
-              bottom: -20,
-              right: 20,
-              elevation: 10,
+              flexDirection: 'row',
+              height: 80,
+              justifyContent: 'center',
             }}>
-            <TouchableOpacity
+            <View
               style={{
-                backgroundColor: lightColor,
-                width: 50,
-                height: 50,
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: 5,
+                width: '35%',
               }}>
-              <Text>T L</Text>
-            </TouchableOpacity>
+              <TextInput
+                keyboardType={'decimal-pad'}
+                style={{
+                  color: mainColor,
+                  fontSize: 40,
+                  borderBottomWidth: 2,
+                  borderColor: mainColor,
+                  padding: 15,
+                }}
+                value={input.toString()}
+                onChangeText={(inputValue) => {
+                  setinput(inputValue);
+                }}
+              />
+            </View>
+            {/* change currency picker */}
+            <View style={{width: '15%'}}>
+              <Picker
+                mode={'dropdown'}
+                selectedValue={convertFrom}
+                style={{
+                  height: 50,
+                  width: 100,
+                  color: mainColor,
+                }}
+                dropdownIconColor={mainColor}
+                onValueChange={(itemValue) => setconvertFrom(itemValue)}>
+                <Picker.Item label="Dollar" value="Dollar" />
+                <Picker.Item label="DZD" value="DZD" />
+                <Picker.Item label="Euro" value="Euro" />
+              </Picker>
+            </View>
           </View>
         </View>
       </View>
