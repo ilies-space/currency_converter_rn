@@ -131,26 +131,6 @@ export default function Home() {
             </View>
           </View>
         </View>
-        {/* swap button  */}
-        <View
-          style={{
-            position: 'absolute',
-            bottom: '43%',
-            right: 20,
-            elevation: 10,
-          }}>
-          <TouchableOpacity
-            style={{
-              backgroundColor: lightColor,
-              width: 50,
-              height: 50,
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 5,
-            }}>
-            <Text>T L</Text>
-          </TouchableOpacity>
-        </View>
 
         {/* Main View  2*/}
         <View
@@ -173,6 +153,7 @@ export default function Home() {
                 width: '35%',
               }}>
               <TextInput
+                editable={false}
                 keyboardType={'decimal-pad'}
                 style={{
                   color: mainColor,
@@ -206,6 +187,26 @@ export default function Home() {
             </View>
           </View>
         </View>
+      </View>
+      {/* swap button  */}
+      <View
+        style={{
+          position: 'absolute',
+          bottom: '42%',
+          right: 20,
+        }}>
+        <TouchableOpacity
+          style={{
+            backgroundColor: lightColor,
+            width: 50,
+            height: 50,
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 5,
+            elevation: 10,
+          }}>
+          <Text style={{fontSize: 40, color: mainColor}}>↑↓</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
