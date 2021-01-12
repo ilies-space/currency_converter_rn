@@ -129,6 +129,27 @@ export default function Home() {
               </Picker>
             </View>
           </View>
+
+          {/* swap button  */}
+          <View
+            style={{
+              position: 'absolute',
+              bottom: -20,
+              right: 20,
+              elevation: 10,
+            }}>
+            <TouchableOpacity
+              style={{
+                backgroundColor: lightColor,
+                width: 50,
+                height: 50,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 5,
+              }}>
+              <Text>T L</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
