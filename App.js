@@ -1,10 +1,6 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import Home from './app/Screens/Home';
 
 export default function App() {
-  return (
-    <View>
-      <Text>Curreny converter</Text>
-    </View>
-  );
+  return <Home />;
 }
