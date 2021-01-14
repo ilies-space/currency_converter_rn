@@ -16,8 +16,8 @@ export default function Home() {
   const mainColor = Colors.mainColor;
   const lightColor = Colors.light;
   //utility
-  const [convertFrom, setconvertFrom] = useState('EUR');
-  const [convertTo, setconvertTo] = useState('DZD');
+  const [convertFrom, setconvertFrom] = useState('DZD');
+  const [convertTo, setconvertTo] = useState('EUR');
   const [input, setinput] = useState(10);
   const [result, setresult] = useState(0);
 
@@ -45,8 +45,8 @@ export default function Home() {
     return monthNames[month] + ' ' + date + ',' + year;
   }
 
-  const [flagto, setflagto] = useState(currencies[0].flagURL);
   const [flagFrom, setflagFrom] = useState(currencies[0].flagURL);
+  const [flagto, setflagto] = useState(currencies[2].flagURL);
 
   var from_to = convertFrom + '_' + convertTo;
   var API_KEY = '8431c148e217d19f195a';
@@ -142,7 +142,7 @@ export default function Home() {
                 </View>
                 <Image
                   source={{
-                    uri: flagto,
+                    uri: flagFrom,
                   }}
                   style={{
                     height: 35,
@@ -210,7 +210,10 @@ export default function Home() {
                   color: lightColor,
                 }}
                 dropdownIconColor={'white'}
-                onValueChange={(itemValue) => setconvertFrom(itemValue)}>
+                onValueChange={(itemValue, index) => {
+                  setconvertFrom(itemValue);
+                  setflagFrom(currencies[index].flagURL);
+                }}>
                 {/* <Picker.Item label="DZD" value="DZD" />
                 <Picker.Item label="EUR" value="EUR" />
                 <Picker.Item label="USD" value="USD" /> */}
