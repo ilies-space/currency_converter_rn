@@ -19,7 +19,7 @@ export default function Home() {
   //utility
   const [convertFrom, setconvertFrom] = useState('DZD');
   const [convertTo, setconvertTo] = useState('EUR');
-  const [input, setinput] = useState(10);
+  const [input, setinput] = useState(1);
   const [result, setresult] = useState(0);
 
   function getCurrentDate() {
@@ -57,6 +57,10 @@ export default function Home() {
   // handle UPDATE or SWAP
   useEffect(() => {
     // alert('');
+    if (input !== 0 && input !== '') {
+      setisFetching(true);
+      convertAmount(from_to, input, setisFetching, setresult);
+    }
     console.log('update me !!');
   }, [convertFrom, convertTo]);
 
@@ -174,10 +178,10 @@ export default function Home() {
                   fontFamily: 'Gruppo-Regular',
                 }}
                 // value={input.toString()}
-                // onChangeText={(inputValue) => {
-                //   setinput(inputValue);
-
-                // }}
+                onChangeText={(inputValue) => {
+                  setinput(inputValue);
+                }}
+                placeholder={'1'}
                 onSubmitEditing={(inputValue) => {
                   var amount = inputValue.nativeEvent.text;
                   console.log({amount});
