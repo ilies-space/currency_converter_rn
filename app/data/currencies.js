@@ -1,5 +1,11 @@
 export let currencies = [
   {
+    name: 'Algerian',
+    abbreviation: 'DZD',
+    symbol: 'dzd',
+    flagURL: 'https://www.xe.com/themes/xe/images/flags/big/dzd.png',
+  },
+  {
     name: 'US Dollar',
     abbreviation: 'USD',
     symbol: '\u0024',
@@ -9,8 +15,7 @@ export let currencies = [
     name: 'Euro',
     abbreviation: 'EUR',
     symbol: '\u20AC',
-    flagURL:
-      'https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg',
+    flagURL: 'https://www.xe.com/themes/xe/images/flags/big/eur.png',
   },
   {
     name: 'Japanese Yen',

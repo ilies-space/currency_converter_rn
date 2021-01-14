@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {
   ActivityIndicator,
+  Image,
   Text,
   TextInput,
   TouchableOpacity,
@@ -8,6 +9,7 @@ import {
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {Colors} from '../theme/Colors';
+import {currencies} from '../data/currencies';
 
 export default function Home() {
   // Colors used
@@ -42,6 +44,8 @@ export default function Home() {
 
     return monthNames[month] + ' ' + date + ',' + year;
   }
+
+  const [flagto, setflagto] = useState(currencies[0].flagURL);
 
   var from_to = convertFrom + '_' + convertTo;
   var API_KEY = '8431c148e217d19f195a';
@@ -121,7 +125,7 @@ export default function Home() {
                 keyboardType={'decimal-pad'}
                 style={{
                   color: 'white',
-                  fontSize: 40,
+                  fontSize: 35,
                   borderBottomWidth: 2,
                   borderColor: 'white',
                   padding: 15,
@@ -171,9 +175,17 @@ export default function Home() {
                 }}
                 dropdownIconColor={'white'}
                 onValueChange={(itemValue) => setconvertFrom(itemValue)}>
-                <Picker.Item label="DZD" value="DZD" />
+                {/* <Picker.Item label="DZD" value="DZD" />
                 <Picker.Item label="EUR" value="EUR" />
-                <Picker.Item label="USD" value="USD" />
+                <Picker.Item label="USD" value="USD" /> */}
+                {currencies.map((element) => {
+                  return (
+                    <Picker.Item
+                      label={element.abbreviation}
+                      value={element.abbreviation}
+                    />
+                  );
+                })}
               </Picker>
             </View>
           </View>
@@ -195,6 +207,41 @@ export default function Home() {
               height: 80,
               justifyContent: 'center',
             }}>
+            {/* ConverToFLAG */}
+            <View
+              style={{
+                justifyContent: 'center',
+              }}>
+              <View
+                style={{
+                  // backgroundColor: 'green',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: 'grey',
+                  height: 35,
+                  width: 35,
+                  elevation: 10,
+                  marginHorizontal: 10,
+                  // borderRadius: 20,
+                }}>
+                <View
+                  style={{
+                    position: 'absolute',
+                  }}>
+                  <ActivityIndicator color={lightColor} />
+                </View>
+                <Image
+                  source={{
+                    uri: flagto,
+                  }}
+                  style={{
+                    height: 35,
+                    width: 35,
+                    // margin: 5,
+                  }}
+                />
+              </View>
+            </View>
             <View
               style={{
                 width: '35%',
@@ -204,7 +251,7 @@ export default function Home() {
                 keyboardType={'decimal-pad'}
                 style={{
                   color: mainColor,
-                  fontSize: 20,
+                  fontSize: 35,
                   borderBottomWidth: 2,
                   borderColor: mainColor,
                   padding: 15,
@@ -227,17 +274,25 @@ export default function Home() {
                   color: mainColor,
                 }}
                 dropdownIconColor={mainColor}
-                onValueChange={(itemValue) => setconvertTo(itemValue)}>
-                <Picker.Item label="USD" value="USD" />
-                <Picker.Item label="DZD" value="DZD" />
-                <Picker.Item label="EUR" value="EUR" />
+                onValueChange={(itemValue, index) => {
+                  setconvertTo(itemValue);
+                  setflagto(currencies[index].flagURL);
+                }}>
+                {currencies.map((element) => {
+                  return (
+                    <Picker.Item
+                      label={element.abbreviation}
+                      value={element.abbreviation}
+                    />
+                  );
+                })}
               </Picker>
             </View>
           </View>
         </View>
       </View>
 
-      <View style={{position: 'absolute', bottom: '42%', right: '45%'}}>
+      <View style={{position: 'absolute', bottom: '43%', right: '43%'}}>
         {isFetching ? (
           <View
             style={{
