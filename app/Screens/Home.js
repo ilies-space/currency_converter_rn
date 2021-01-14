@@ -145,10 +145,8 @@ export default function Home() {
                           alert(data.error);
                           setisFetching(false);
                         } else {
-                          setresult(data);
-                          console.log(from_to);
-
-                          setresult(Object.values(data)[0] * amount);
+                          const RESPONSE = Object.values(data)[0] * amount;
+                          setresult(RESPONSE.toFixed(2));
                           console.log({result});
                           setisFetching(false);
                         }
@@ -195,7 +193,7 @@ export default function Home() {
             }}>
             <View
               style={{
-                width: '64%',
+                width: '35%',
               }}>
               <TextInput
                 editable={false}
@@ -233,7 +231,6 @@ export default function Home() {
           </View>
         </View>
       </View>
-      {/* swap button  */}
 
       <View style={{position: 'absolute', bottom: '42%', right: '45%'}}>
         {isFetching ? (
@@ -253,7 +250,10 @@ export default function Home() {
           <View />
         )}
       </View>
-      <View
+
+      {/* swap button  */}
+
+      {/* <View
         style={{
           position: 'absolute',
           bottom: '42%',
@@ -271,7 +271,7 @@ export default function Home() {
           }}>
           <Text style={{fontSize: 40, color: mainColor}}>↑↓</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 }
