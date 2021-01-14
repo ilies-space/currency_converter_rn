@@ -4,7 +4,7 @@ A currency converter is used to convert an amount in one currency to its corresp
 
 ## current progress :
 
-![](screenShots/previwHome.png)
+![](screenShots/progressDay2.jpg)
 
 ## final vision :
 

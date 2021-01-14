@@ -185,6 +185,7 @@ export default function Home() {
                     )
                       .then((response) => response.json())
                       .then((data) => {
+                        console.log(data);
                         if (data.status === 400) {
                           alert(data.error);
                           setisFetching(false);
