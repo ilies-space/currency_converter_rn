@@ -55,15 +55,17 @@ export default function Home() {
   // test convert
   const [isFetching, setisFetching] = useState(false);
 
-  const netState = getNetworkStatu();
+  var netState = getNetworkStatu();
 
   // handle UPDATE or SWAP
   useEffect(() => {
     // alert('');
-    if (input !== 0 && input !== '') {
-      convertAmount(from_to, input, setisFetching, setresult);
+
+    if (netState) {
+      if (input !== 0 && input !== '') {
+        convertAmount(from_to, input, setisFetching, setresult, netState);
+      }
     }
-    console.log('update me !!');
   }, [convertFrom, convertTo, convertFrom]);
 
   // console.log(convertFrom + '_' + convertTo);
