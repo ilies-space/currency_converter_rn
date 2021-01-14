@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {Colors} from '../theme/Colors';
 
@@ -38,8 +44,10 @@ export default function Home() {
   }
 
   var from_to = convertFrom + '_' + convertTo;
-  var API_KEY = 'GET_YOUR_KEY_FROM_https://www.currencyconverterapi.com';
+  var API_KEY = '8431c148e217d19f195a';
+  // GET KEY FROM  : https://free.currencyconverterapi.com
   // test convert
+  const [isFetching, setisFetching] = useState(false);
 
   // console.log(convertFrom + '_' + convertTo);
   // console.log(15 * input);
@@ -106,6 +114,7 @@ export default function Home() {
                 width: '35%',
               }}>
               <TextInput
+                // editable={!isFetching}
                 keyboardType={'decimal-pad'}
                 style={{
                   color: 'white',
@@ -115,9 +124,15 @@ export default function Home() {
                   padding: 15,
                 }}
                 // value={input.toString()}
-                onChangeText={(inputValue) => {
-                  // setinput(inputValue);
-                  if (inputValue !== 0) {
+                // onChangeText={(inputValue) => {
+                //   setinput(inputValue);
+
+                // }}
+                onSubmitEditing={(inputValue) => {
+                  var amount = inputValue.nativeEvent.text;
+                  console.log({amount});
+                  if (amount !== 0 && amount !== '') {
+                    setisFetching(true);
                     fetch(
                       'https://free.currconv.com/api/v7/convert?q=' +
                         from_to +
@@ -126,11 +141,17 @@ export default function Home() {
                     )
                       .then((response) => response.json())
                       .then((data) => {
-                        setresult(data);
-                        console.log(from_to);
+                        if (data.status === 400) {
+                          alert(data.error);
+                          setisFetching(false);
+                        } else {
+                          setresult(data);
+                          console.log(from_to);
 
-                        setresult(Object.values(data)[0] * inputValue);
-                        console.log({result});
+                          setresult(Object.values(data)[0] * amount);
+                          console.log({result});
+                          setisFetching(false);
+                        }
                       });
                   }
                 }}
@@ -213,6 +234,25 @@ export default function Home() {
         </View>
       </View>
       {/* swap button  */}
+
+      <View style={{position: 'absolute', bottom: '42%', right: '45%'}}>
+        {isFetching ? (
+          <View
+            style={{
+              backgroundColor: lightColor,
+              elevation: 20,
+              height: 50,
+              width: 50,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 25,
+            }}>
+            <ActivityIndicator size="large" color={mainColor} />
+          </View>
+        ) : (
+          <View />
+        )}
+      </View>
       <View
         style={{
           position: 'absolute',
