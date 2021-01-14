@@ -46,6 +46,7 @@ export default function Home() {
   }
 
   const [flagto, setflagto] = useState(currencies[0].flagURL);
+  const [flagFrom, setflagFrom] = useState(currencies[0].flagURL);
 
   var from_to = convertFrom + '_' + convertTo;
   var API_KEY = '8431c148e217d19f195a';
@@ -116,6 +117,41 @@ export default function Home() {
               height: 80,
               justifyContent: 'center',
             }}>
+            {/* ConverToFLAG */}
+            <View
+              style={{
+                justifyContent: 'center',
+              }}>
+              <View
+                style={{
+                  // backgroundColor: 'green',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: 'grey',
+                  height: 35,
+                  width: 35,
+                  elevation: 10,
+                  marginHorizontal: 10,
+                  // borderRadius: 20,
+                }}>
+                <View
+                  style={{
+                    position: 'absolute',
+                  }}>
+                  <ActivityIndicator color={lightColor} />
+                </View>
+                <Image
+                  source={{
+                    uri: flagto,
+                  }}
+                  style={{
+                    height: 35,
+                    width: 35,
+                    // margin: 5,
+                  }}
+                />
+              </View>
+            </View>
             <View
               style={{
                 width: '35%',
