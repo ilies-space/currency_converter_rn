@@ -63,7 +63,10 @@ export default function Home() {
             padding: 12,
           }}>
           {/* curret date */}
-          <Text style={{color: lightColor}}> {getCurrentDate()} </Text>
+          <Text style={{color: lightColor, fontFamily: 'Gruppo-Regular'}}>
+            {' '}
+            {getCurrentDate()}{' '}
+          </Text>
           {/* hamburger icon  */}
           <TouchableOpacity>
             <View
@@ -122,6 +125,7 @@ export default function Home() {
                   borderBottomWidth: 2,
                   borderColor: 'white',
                   padding: 15,
+                  fontFamily: 'Gruppo-Regular',
                 }}
                 // value={input.toString()}
                 // onChangeText={(inputValue) => {
@@ -206,6 +210,7 @@ export default function Home() {
                   borderBottomWidth: 2,
                   borderColor: mainColor,
                   padding: 15,
+                  fontFamily: 'Gruppo-Regular',
                 }}
                 value={result.toString()}
                 onChangeText={(inputValue) => {
