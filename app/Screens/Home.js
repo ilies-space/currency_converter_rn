@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -10,6 +10,7 @@ import {
 import {Picker} from '@react-native-picker/picker';
 import {Colors} from '../theme/Colors';
 import {currencies} from '../data/currencies';
+import {convertAmount} from '../functions/currencyConverter';
 
 export default function Home() {
   // Colors used
@@ -49,10 +50,15 @@ export default function Home() {
   const [flagto, setflagto] = useState(currencies[2].flagURL);
 
   var from_to = convertFrom + '_' + convertTo;
-  var API_KEY = '8431c148e217d19f195a';
   // GET KEY FROM  : https://free.currencyconverterapi.com
   // test convert
   const [isFetching, setisFetching] = useState(false);
+
+  // handle UPDATE or SWAP
+  useEffect(() => {
+    // alert('');
+    console.log('update me !!');
+  }, [convertFrom, convertTo]);
 
   // console.log(convertFrom + '_' + convertTo);
   // console.log(15 * input);
@@ -177,25 +183,7 @@ export default function Home() {
                   console.log({amount});
                   if (amount !== 0 && amount !== '') {
                     setisFetching(true);
-                    fetch(
-                      'https://free.currconv.com/api/v7/convert?q=' +
-                        from_to +
-                        '&compact=ultra&apiKey=' +
-                        API_KEY,
-                    )
-                      .then((response) => response.json())
-                      .then((data) => {
-                        console.log(data);
-                        if (data.status === 400) {
-                          alert(data.error);
-                          setisFetching(false);
-                        } else {
-                          const RESPONSE = Object.values(data)[0] * amount;
-                          setresult(RESPONSE.toFixed(2));
-                          console.log({result});
-                          setisFetching(false);
-                        }
-                      });
+                    convertAmount(from_to, amount, setisFetching, setresult);
                   }
                 }}
               />
@@ -221,6 +209,7 @@ export default function Home() {
                 {currencies.map((element) => {
                   return (
                     <Picker.Item
+                      key={element.abbreviation}
                       label={element.abbreviation}
                       value={element.abbreviation}
                     />
@@ -297,7 +286,7 @@ export default function Home() {
                   padding: 15,
                   fontFamily: 'Gruppo-Regular',
                 }}
-                value={result.toString()}
+                value={result ? result.toString() : '0'}
                 onChangeText={(inputValue) => {
                   setresult(inputValue);
                 }}
@@ -321,6 +310,7 @@ export default function Home() {
                 {currencies.map((element) => {
                   return (
                     <Picker.Item
+                      key={element.abbreviation}
                       label={element.abbreviation}
                       value={element.abbreviation}
                     />
