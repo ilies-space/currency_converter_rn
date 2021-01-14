@@ -1,6 +1,5 @@
-import {getNetworkStatu} from './NetworkState';
+import {Alert} from 'react-native';
 
-console.log('Function GOES HERE');
 const API_KEY = '8431c148e217d19f195a';
 
 export function convertAmount(
@@ -10,7 +9,6 @@ export function convertAmount(
   setresult,
   netState,
 ) {
-  console.log({netState});
   if (netState) {
     setisFetching(true);
     fetch(
@@ -29,13 +27,16 @@ export function convertAmount(
         } else {
           const RESPONSE = Object.values(data)[0] * amount;
           setisFetching(false);
-          console.log({data});
-
           setresult(RESPONSE.toFixed(2));
         }
       });
   } else {
     alert('OFFLINE !! ');
+    Alert.alert('Network error ! ', 'please connect to the internet.', [
+      {
+        text: 'cancel',
+      },
+    ]);
     setisFetching(false);
   }
 }

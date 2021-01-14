@@ -49,18 +49,13 @@ export default function Home() {
 
   const [flagFrom, setflagFrom] = useState(currencies[0].flagURL);
   const [flagto, setflagto] = useState(currencies[2].flagURL);
-
   const [from_to, setfrom_to] = useState(convertFrom + '_' + convertTo);
-  // GET KEY FROM  : https://free.currencyconverterapi.com
-  // test convert
   const [isFetching, setisFetching] = useState(false);
 
   var netState = getNetworkStatu();
 
   // handle UPDATE or SWAP
   useEffect(() => {
-    // alert('');
-
     if (netState) {
       if (input !== 0 && input !== '') {
         convertAmount(from_to, input, setisFetching, setresult, netState);
@@ -68,8 +63,6 @@ export default function Home() {
     }
   }, [convertFrom, convertTo, convertFrom]);
 
-  // console.log(convertFrom + '_' + convertTo);
-  // console.log(15 * input);
   return (
     <View style={{flex: 1}}>
       {/* TOP VIEW */}
@@ -191,7 +184,6 @@ export default function Home() {
                 placeholder={'1'}
                 onSubmitEditing={(inputValue) => {
                   var amount = inputValue.nativeEvent.text;
-                  console.log({amount});
                   if (amount !== 0 && amount !== '') {
                     setisFetching(true);
                     convertAmount(
@@ -220,9 +212,6 @@ export default function Home() {
                   setconvertFrom(itemValue);
                   setflagFrom(currencies[index].flagURL);
                 }}>
-                {/* <Picker.Item label="DZD" value="DZD" />
-                <Picker.Item label="EUR" value="EUR" />
-                <Picker.Item label="USD" value="USD" /> */}
                 {currencies.map((element) => {
                   return (
                     <Picker.Item
@@ -381,13 +370,11 @@ export default function Home() {
             const temp = convertFrom;
             setconvertFrom(convertTo);
             setconvertTo(temp);
-
             // switch IMG
-
             const tempIMG = flagFrom;
             setflagFrom(flagto);
             setflagto(tempIMG);
-
+            // upadte conversion statu
             setfrom_to(convertTo + '_' + convertFrom);
           }}>
           <Text style={{fontSize: 40, color: mainColor}}>↑↓</Text>
