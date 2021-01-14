@@ -83,7 +83,10 @@ export default function Home() {
             {getCurrentDate()}{' '}
           </Text>
           {/* hamburger icon  */}
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              alert('CURRENCY EXCHANGE V 1.0.0');
+            }}>
             <View
               style={{
                 height: 2.5,
