@@ -347,10 +347,10 @@ export default function Home() {
 
       {/* swap button  */}
 
-      {/* <View
+      <View
         style={{
           position: 'absolute',
-          bottom: '42%',
+          bottom: '43%',
           right: 20,
         }}>
         <TouchableOpacity
@@ -365,7 +365,7 @@ export default function Home() {
           }}>
           <Text style={{fontSize: 40, color: mainColor}}>↑↓</Text>
         </TouchableOpacity>
-      </View> */}
+      </View>
     </View>
   );
 }
