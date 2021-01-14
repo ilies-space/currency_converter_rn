@@ -8,8 +8,8 @@ export default function Home() {
   const mainColor = Colors.mainColor;
   const lightColor = Colors.light;
   //utility
-  const [convertFrom, setconvertFrom] = useState('DZD');
-  const [convertTo, setconvertTo] = useState('Euro');
+  const [convertFrom, setconvertFrom] = useState('EUR');
+  const [convertTo, setconvertTo] = useState('DZD');
   const [input, setinput] = useState(10);
   const [result, setresult] = useState(0);
 
@@ -37,6 +37,12 @@ export default function Home() {
     return monthNames[month] + ' ' + date + ',' + year;
   }
 
+  var from_to = convertFrom + '_' + convertTo;
+  var API_KEY = 'GET_YOUR_KEY_FROM_https://www.currencyconverterapi.com';
+  // test convert
+
+  // console.log(convertFrom + '_' + convertTo);
+  // console.log(15 * input);
   return (
     <View style={{flex: 1}}>
       {/* TOP VIEW */}
@@ -108,9 +114,25 @@ export default function Home() {
                   borderColor: 'white',
                   padding: 15,
                 }}
-                value={input.toString()}
+                // value={input.toString()}
                 onChangeText={(inputValue) => {
-                  setinput(inputValue);
+                  // setinput(inputValue);
+                  if (inputValue !== 0) {
+                    fetch(
+                      'https://free.currconv.com/api/v7/convert?q=' +
+                        from_to +
+                        '&compact=ultra&apiKey=' +
+                        API_KEY,
+                    )
+                      .then((response) => response.json())
+                      .then((data) => {
+                        setresult(data);
+                        console.log(from_to);
+
+                        setresult(Object.values(data)[0] * inputValue);
+                        console.log({result});
+                      });
+                  }
                 }}
               />
             </View>
@@ -127,8 +149,8 @@ export default function Home() {
                 dropdownIconColor={'white'}
                 onValueChange={(itemValue) => setconvertFrom(itemValue)}>
                 <Picker.Item label="DZD" value="DZD" />
-                <Picker.Item label="Euro" value="Euro" />
-                <Picker.Item label="Dollar" value="Dollar" />
+                <Picker.Item label="EUR" value="EUR" />
+                <Picker.Item label="USD" value="USD" />
               </Picker>
             </View>
           </View>
@@ -152,14 +174,14 @@ export default function Home() {
             }}>
             <View
               style={{
-                width: '35%',
+                width: '64%',
               }}>
               <TextInput
                 editable={false}
                 keyboardType={'decimal-pad'}
                 style={{
                   color: mainColor,
-                  fontSize: 40,
+                  fontSize: 20,
                   borderBottomWidth: 2,
                   borderColor: mainColor,
                   padding: 15,
@@ -182,9 +204,9 @@ export default function Home() {
                 }}
                 dropdownIconColor={mainColor}
                 onValueChange={(itemValue) => setconvertTo(itemValue)}>
-                <Picker.Item label="Dollar" value="Dollar" />
+                <Picker.Item label="USD" value="USD" />
                 <Picker.Item label="DZD" value="DZD" />
-                <Picker.Item label="Euro" value="Euro" />
+                <Picker.Item label="EUR" value="EUR" />
               </Picker>
             </View>
           </View>
