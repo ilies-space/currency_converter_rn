@@ -11,6 +11,7 @@ import {Picker} from '@react-native-picker/picker';
 import {Colors} from '../theme/Colors';
 import {currencies} from '../data/currencies';
 import {convertAmount} from '../functions/currencyConverter';
+import {getNetworkStatu} from '../functions/NetworkState';
 
 export default function Home() {
   // Colors used
@@ -54,11 +55,12 @@ export default function Home() {
   // test convert
   const [isFetching, setisFetching] = useState(false);
 
+  const netState = getNetworkStatu();
+
   // handle UPDATE or SWAP
   useEffect(() => {
     // alert('');
     if (input !== 0 && input !== '') {
-      setisFetching(true);
       convertAmount(from_to, input, setisFetching, setresult);
     }
     console.log('update me !!');
@@ -190,7 +192,13 @@ export default function Home() {
                   console.log({amount});
                   if (amount !== 0 && amount !== '') {
                     setisFetching(true);
-                    convertAmount(from_to, amount, setisFetching, setresult);
+                    convertAmount(
+                      from_to,
+                      amount,
+                      setisFetching,
+                      setresult,
+                      netState,
+                    );
                   }
                 }}
               />

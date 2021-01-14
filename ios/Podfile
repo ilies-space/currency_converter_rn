@@ -8,6 +8,8 @@ target 'currency_converter_rn' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
+
   target 'currency_converter_rnTests' do
     inherit! :complete
     # Pods for testing
