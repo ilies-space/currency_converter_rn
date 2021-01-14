@@ -362,6 +362,11 @@ export default function Home() {
             justifyContent: 'center',
             borderRadius: 5,
             elevation: 10,
+          }}
+          onPress={() => {
+            const temp = convertFrom;
+            setconvertFrom(convertTo);
+            setconvertTo(temp);
           }}>
           <Text style={{fontSize: 40, color: mainColor}}>↑↓</Text>
         </TouchableOpacity>
