@@ -49,7 +49,7 @@ export default function Home() {
   const [flagFrom, setflagFrom] = useState(currencies[0].flagURL);
   const [flagto, setflagto] = useState(currencies[2].flagURL);
 
-  var from_to = convertFrom + '_' + convertTo;
+  const [from_to, setfrom_to] = useState(convertFrom + '_' + convertTo);
   // GET KEY FROM  : https://free.currencyconverterapi.com
   // test convert
   const [isFetching, setisFetching] = useState(false);
@@ -62,7 +62,7 @@ export default function Home() {
       convertAmount(from_to, input, setisFetching, setresult);
     }
     console.log('update me !!');
-  }, [convertFrom, convertTo]);
+  }, [convertFrom, convertTo, convertFrom]);
 
   // console.log(convertFrom + '_' + convertTo);
   // console.log(15 * input);
@@ -364,9 +364,18 @@ export default function Home() {
             elevation: 10,
           }}
           onPress={() => {
+            // switch picker
             const temp = convertFrom;
             setconvertFrom(convertTo);
             setconvertTo(temp);
+
+            // switch IMG
+
+            const tempIMG = flagFrom;
+            setflagFrom(flagto);
+            setflagto(tempIMG);
+
+            setfrom_to(convertTo + '_' + convertFrom);
           }}>
           <Text style={{fontSize: 40, color: mainColor}}>↑↓</Text>
         </TouchableOpacity>
