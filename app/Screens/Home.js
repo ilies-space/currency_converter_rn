@@ -89,7 +89,7 @@ export default function Home() {
           {/* hamburger icon  */}
           <TouchableOpacity
             onPress={() => {
-              alert('CURRENCY EXCHANGE V 1.0.0');
+              alert('CURRENCY EXCHANGE V 0.95');
             }}>
             <View
               style={{
