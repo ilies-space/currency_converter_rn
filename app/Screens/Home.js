@@ -12,6 +12,7 @@ import {Colors} from '../theme/Colors';
 import {currencies} from '../data/currencies';
 import {convertAmount} from '../functions/currencyConverter';
 import {getNetworkStatu} from '../functions/NetworkState';
+import AlertBox from './shared/AlertBox';
 
 export default function Home() {
   // Colors used
@@ -51,6 +52,9 @@ export default function Home() {
   const [flagto, setflagto] = useState(currencies[2].flagURL);
   const [from_to, setfrom_to] = useState(convertFrom + '_' + convertTo);
   const [isFetching, setisFetching] = useState(false);
+  // Alertbox states
+  const [displayAlert, setDisplayAlert] = useState(false);
+  const [alertText, setAlertText] = useState('');
 
   var netState = getNetworkStatu();
 
@@ -58,13 +62,28 @@ export default function Home() {
   useEffect(() => {
     if (netState) {
       if (input !== 0 && input !== '') {
-        convertAmount(from_to, input, setisFetching, setresult, netState);
+        convertAmount(
+          from_to,
+          input,
+          setisFetching,
+          setresult,
+          netState,
+          setDisplayAlert,
+          setAlertText,
+        );
       }
     }
-  }, [convertFrom, convertTo, convertFrom]);
+  }, [convertFrom, convertTo]);
 
   return (
     <View style={{flex: 1}}>
+      {/* Alertbox */}
+      <AlertBox
+        displayAlert={displayAlert}
+        setDisplayAlert={setDisplayAlert}
+        title="Srafly (Currency converter)"
+        text={alertText}
+      />
       {/* TOP VIEW */}
       <View style={{backgroundColor: mainColor, flex: 1}}>
         {/* header  */}
@@ -82,7 +101,8 @@ export default function Home() {
           {/* hamburger icon  */}
           <TouchableOpacity
             onPress={() => {
-              alert('CURRENCY EXCHANGE V 0.95');
+              setAlertText('CURRENCY EXCHANGE V 0.95');
+              setDisplayAlert(true);
             }}>
             <View
               style={{
@@ -192,6 +212,8 @@ export default function Home() {
                       setisFetching,
                       setresult,
                       netState,
+                      setDisplayAlert,
+                      setAlertText,
                     );
                   }
                 }}

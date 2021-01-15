@@ -8,6 +8,8 @@ export function convertAmount(
   setisFetching,
   setresult,
   netState,
+  setDisplayAlert,
+  setAlertText,
 ) {
   if (netState) {
     setisFetching(true);
@@ -20,7 +22,8 @@ export function convertAmount(
       .then((response) => response.json())
       .then((data) => {
         if (data.status === 400) {
-          alert(data.error);
+          setDisplayAlert(true);
+          setAlertText(data.error);
           setisFetching(false);
 
           return;
@@ -31,12 +34,9 @@ export function convertAmount(
         }
       });
   } else {
+    setDisplayAlert(true);
+    setAlertText('Network error ! please connect to the internet.');
     alert('OFFLINE !! ');
-    Alert.alert('Network error ! ', 'please connect to the internet.', [
-      {
-        text: 'cancel',
-      },
-    ]);
     setisFetching(false);
   }
 }
