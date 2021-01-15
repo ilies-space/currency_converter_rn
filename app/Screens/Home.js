@@ -13,6 +13,7 @@ import {currencies} from '../data/currencies';
 import {convertAmount} from '../functions/currencyConverter';
 import {getNetworkStatu} from '../functions/NetworkState';
 import AlertBox from './shared/AlertBox';
+import {homeStyles} from '../theme/Styles';
 
 export default function Home() {
   // Colors used
@@ -76,7 +77,7 @@ export default function Home() {
   }, [convertFrom, convertTo]);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={homeStyles.container}>
       {/* Alertbox */}
       <AlertBox
         displayAlert={displayAlert}
@@ -85,118 +86,45 @@ export default function Home() {
         text={alertText}
       />
       {/* TOP VIEW */}
-      <View style={{backgroundColor: mainColor, flex: 1}}>
+      <View style={homeStyles.topView}>
         {/* header  */}
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            padding: 12,
-          }}>
+        <View style={homeStyles.header}>
           {/* curret date */}
-          <Text style={{color: lightColor, fontFamily: 'Gruppo-Regular'}}>
-            {' '}
-            {getCurrentDate()}{' '}
-          </Text>
+          <Text style={homeStyles.currentDate}> {getCurrentDate()} </Text>
           {/* hamburger icon  */}
           <TouchableOpacity
             onPress={() => {
               setAlertText('CURRENCY EXCHANGE V 0.95');
               setDisplayAlert(true);
             }}>
-            <View
-              style={{
-                height: 2.5,
-                backgroundColor: lightColor,
-                width: 35,
-                borderRadius: 10,
-              }}
-            />
-            <View
-              style={{
-                height: 2.5,
-                backgroundColor: lightColor,
-                width: 25,
-                borderRadius: 10,
-                marginVertical: 8,
-              }}
-            />
-            <View
-              style={{
-                height: 2.5,
-                backgroundColor: lightColor,
-                width: 15,
-                borderRadius: 10,
-              }}
-            />
+            <View style={homeStyles.hamburgerIcon1} />
+            <View style={homeStyles.hamburgerIcon2} />
+            <View style={homeStyles.hamburgerIcon3} />
           </TouchableOpacity>
         </View>
         {/* Main View  1*/}
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: mainColor,
-            flex: 1,
-            zIndex: 0,
-          }}>
+        <View style={homeStyles.mainView1}>
           {/* INPUT AREA  */}
-          <View
-            style={{
-              flexDirection: 'row',
-              height: 80,
-              justifyContent: 'center',
-            }}>
+          <View style={homeStyles.inputArea}>
             {/* ConverToFLAG */}
-            <View
-              style={{
-                justifyContent: 'center',
-              }}>
-              <View
-                style={{
-                  // backgroundColor: 'green',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: 'grey',
-                  height: 35,
-                  width: 35,
-                  elevation: 10,
-                  marginHorizontal: 10,
-                  // borderRadius: 20,
-                }}>
-                <View
-                  style={{
-                    position: 'absolute',
-                  }}>
+            <View style={homeStyles.convertToContainer}>
+              <View style={homeStyles.convertToBackground}>
+                <View style={homeStyles.convertToPosition}>
                   <ActivityIndicator color={lightColor} />
                 </View>
                 <Image
                   source={{
                     uri: flagFrom,
                   }}
-                  style={{
-                    height: 35,
-                    width: 35,
-                    // margin: 5,
-                  }}
+                  style={homeStyles.flagSize}
                 />
               </View>
             </View>
-            <View
-              style={{
-                width: '35%',
-              }}>
+            <View style={homeStyles.inputWidth}>
               <TextInput
                 // editable={!isFetching}
                 keyboardType={'decimal-pad'}
-                style={{
-                  color: 'white',
-                  fontSize: 35,
-                  borderBottomWidth: 2,
-                  borderColor: 'white',
-                  padding: 15,
-                  fontFamily: 'Gruppo-Regular',
-                }}
+                style={homeStyles.inputStyle}
                 // value={input.toString()}
                 onChangeText={(inputValue) => {
                   setinput(inputValue);
@@ -224,12 +152,8 @@ export default function Home() {
               <Picker
                 mode={'dropdown'}
                 selectedValue={convertFrom}
-                style={{
-                  height: 50,
-                  width: 100,
-                  color: lightColor,
-                }}
-                itemStyle={{fontFamily: 'Gruppo-Regular'}}
+                style={homeStyles.changeCurrencyPicker}
+                itemStyle={homeStyles.changeCurrencyPickerTextFont}
                 dropdownIconColor={'white'}
                 onValueChange={(itemValue, index) => {
                   setconvertFrom(itemValue);
@@ -251,71 +175,28 @@ export default function Home() {
         </View>
 
         {/* Main View  2*/}
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: lightColor,
-            flex: 1,
-            zIndex: 0,
-          }}>
+        <View style={homeStyles.mainView2}>
           {/* Result AREA  */}
-          <View
-            style={{
-              flexDirection: 'row',
-              height: 80,
-              justifyContent: 'center',
-            }}>
+          <View style={homeStyles.resultArea}>
             {/* ConverToFLAG */}
-            <View
-              style={{
-                justifyContent: 'center',
-              }}>
-              <View
-                style={{
-                  // backgroundColor: 'green',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: 'grey',
-                  height: 35,
-                  width: 35,
-                  elevation: 10,
-                  marginHorizontal: 10,
-                  // borderRadius: 20,
-                }}>
-                <View
-                  style={{
-                    position: 'absolute',
-                  }}>
+            <View style={homeStyles.convertToFlagPosition}>
+              <View style={homeStyles.convertToFlagStyle}>
+                <View style={homeStyles.loadingFlagPosition}>
                   <ActivityIndicator color={lightColor} />
                 </View>
                 <Image
                   source={{
                     uri: flagto,
                   }}
-                  style={{
-                    height: 35,
-                    width: 35,
-                    // margin: 5,
-                  }}
+                  style={homeStyles.flagSize}
                 />
               </View>
             </View>
-            <View
-              style={{
-                width: '35%',
-              }}>
+            <View style={homeStyles.inputWidth}>
               <TextInput
                 editable={false}
                 keyboardType={'decimal-pad'}
-                style={{
-                  color: mainColor,
-                  fontSize: 35,
-                  borderBottomWidth: 2,
-                  borderColor: mainColor,
-                  padding: 15,
-                  fontFamily: 'Gruppo-Regular',
-                }}
+                style={homeStyles.inputStyleView2}
                 value={result ? result.toString() : '0'}
                 onChangeText={(inputValue) => {
                   setresult(inputValue);
@@ -323,17 +204,13 @@ export default function Home() {
               />
             </View>
             {/* change currency picker */}
-            <View style={{width: '15%'}}>
+            <View style={homeStyles.changeCurrencyPickerWidthView2}>
               <Picker
                 mode={'dropdown'}
                 selectedValue={convertTo}
-                style={{
-                  height: 50,
-                  width: 100,
-                  color: mainColor,
-                }}
+                style={homeStyles.changeCurrencyPickerView2}
                 dropdownIconColor={mainColor}
-                itemStyle={{fontFamily: 'Gruppo-Regular'}}
+                itemStyle={homeStyles.changeCurrencyPickerTextFont}
                 onValueChange={(itemValue, index) => {
                   setconvertTo(itemValue);
                   setflagto(currencies[index].flagURL);
@@ -354,18 +231,9 @@ export default function Home() {
         </View>
       </View>
 
-      <View style={{position: 'absolute', bottom: '43%', right: '43%'}}>
+      <View style={homeStyles.fetchingIconPostion}>
         {isFetching ? (
-          <View
-            style={{
-              backgroundColor: lightColor,
-              elevation: 20,
-              height: 50,
-              width: 50,
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 25,
-            }}>
+          <View style={homeStyles.fetchingIconStyle}>
             <ActivityIndicator size="large" color={mainColor} />
           </View>
         ) : (
@@ -375,22 +243,9 @@ export default function Home() {
 
       {/* swap button  */}
 
-      <View
-        style={{
-          position: 'absolute',
-          bottom: '43%',
-          right: 20,
-        }}>
+      <View style={homeStyles.swapButtonPosition}>
         <TouchableOpacity
-          style={{
-            backgroundColor: lightColor,
-            width: 50,
-            height: 50,
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: 5,
-            elevation: 10,
-          }}
+          style={homeStyles.swapButtonStyle}
           onPress={() => {
             // switch picker
             const temp = convertFrom;
