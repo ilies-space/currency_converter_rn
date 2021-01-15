@@ -207,6 +207,7 @@ export default function Home() {
                   width: 100,
                   color: lightColor,
                 }}
+                itemStyle={{fontFamily: 'Gruppo-Regular'}}
                 dropdownIconColor={'white'}
                 onValueChange={(itemValue, index) => {
                   setconvertFrom(itemValue);
@@ -215,6 +216,7 @@ export default function Home() {
                 {currencies.map((element) => {
                   return (
                     <Picker.Item
+                      color={mainColor}
                       key={element.abbreviation}
                       label={element.abbreviation}
                       value={element.abbreviation}
@@ -309,6 +311,7 @@ export default function Home() {
                   color: mainColor,
                 }}
                 dropdownIconColor={mainColor}
+                itemStyle={{fontFamily: 'Gruppo-Regular'}}
                 onValueChange={(itemValue, index) => {
                   setconvertTo(itemValue);
                   setflagto(currencies[index].flagURL);
@@ -316,6 +319,7 @@ export default function Home() {
                 {currencies.map((element) => {
                   return (
                     <Picker.Item
+                      color={mainColor}
                       key={element.abbreviation}
                       label={element.abbreviation}
                       value={element.abbreviation}
