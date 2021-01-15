@@ -36,7 +36,6 @@ export function convertAmount(
   } else {
     setDisplayAlert(true);
     setAlertText('Network error ! please connect to the internet.');
-    alert('OFFLINE !! ');
     setisFetching(false);
   }
 }
