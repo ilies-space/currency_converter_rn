@@ -70,6 +70,13 @@ export const alertStyles = StyleSheet.create({
     fontFamily: 'Gruppo-Regular',
     color: '#ffffff',
   },
+  view: {
+    backgroundColor: 'black',
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    opacity: 0.8,
+  },
 });
 
 export const homeStyles = StyleSheet.create({

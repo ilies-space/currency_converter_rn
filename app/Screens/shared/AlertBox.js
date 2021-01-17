@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Modal} from 'react-native';
+import {View, Text, TouchableOpacity, Modal} from 'react-native';
 import {alertStyles} from '../../theme/Styles';
 
 export default function AlertBox({title, text, displayAlert, setDisplayAlert}) {
   return (
-    <Modal visible={displayAlert} transparent={true} animationType={'slide'}>
+    <Modal visible={displayAlert} transparent={true} animationType={'fade'}>
+      <View style={alertStyles.view} />
       <View style={alertStyles.mainOuterComponent}>
         <View style={alertStyles.mainContainer}>
           {/* Alert title */}
